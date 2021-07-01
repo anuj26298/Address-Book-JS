@@ -159,14 +159,47 @@ class AddressBook {
             }
         });
     }
+
+    count(intialCount){
+        return intialCount+=1;
+    }
+    getCount(){
+        console.log(addressBook.addressBookArray.reduce(this.count,0));
+    }
+
+    searchByCityORState(input){
+        addressBook.addressBookArray.filter(person =>{
+            if(person.city === input || person.state === input){
+                console.log(" \nFirstName : " + person.firstName + "\nLastName : " + person.lastName + "\n Address: " + person.address +
+                "\nCity : " + person.city + "\nState : " + person.state + "\nZipCode : " + person.zipCode + "\nPhone : " +
+                person.phone + "\nemail : " + person.email);
+            }
+        });
+    }
+
+    sortByName(){
+        addressBook.addressBookArray.sort((prefix,suffix) =>{
+            return prefix.firstName.localeCompare(suffix.firstName);
+        });
+    }
 }
 
 var addressBook = new AddressBook();
 var person1 = new Person("Abhi", "Kapoor", "VedViyas", "Meerut", "UP", "250005", "9876543210", "abhi.kapoor@example.com");
 var person2 = new Person("Harsh", "Kapoor", "VedViyas", "Meerut","UP","250005","9876546780","harsh.kapoor@example.com");
+var person3 = new Person("Arav", "Kapoor", "VedViyas", "Meerut","UP","250005","9876546780","harsh.kapoor@example.com");
+var person4 = new Person("Ishan", "Kapoor", "VedViyas", "Meerut","UP","250005","9876546780","harsh.kapoor@example.com");
+
 addressBook.addContact(person1);
 addressBook.addContact(person2);
-addressBook.showContacts();
+addressBook.addContact(person3);
+addressBook.addContact(person4);
+
+// addressBook.showContacts();
 addressBook.editContact("Abhi", "city", "Mnzff");
 addressBook.deleteContact("Harsh");
+// addressBook.showContacts();
+addressBook.getCount();
+addressBook.searchByCityORState("UP");
+addressBook.sortByName();
 addressBook.showContacts();
