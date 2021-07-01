@@ -109,13 +109,51 @@ class AddressBook {
     showContacts() {
         addressBook.addressBookArray.forEach(person => {
             console.log(" \nFirstName : " + person.firstName + "\nLastName : " + person.lastName + "\n Address: " + person.address +
-                "\nCity : " + person.city + "\nState : " + person.state + "\nZipCode : " + person.zipCode + "\nPhone : " + 
+                "\nCity : " + person.city + "\nState : " + person.state + "\nZipCode : " + person.zipCode + "\nPhone : " +
                 person.phone + "\nemail : " + person.email);
+        });
+    }
+
+    editContact(firstName, attributeToEdit, newValue) {
+        addressBook.addressBookArray.forEach(person => {
+            if (person.firstName === firstName) {
+
+                switch (attributeToEdit) {
+                    case "firstName":
+                        person.firstName = newValue;
+                        break;
+                    case "lastName":
+                        person.lastName = newValue;
+                        break;
+                    case "address":
+                        person.address = newValue;
+                        break;
+                    case "city":
+                        person.city = newValue;
+                        break;
+                    case "state":
+                        person.state = newValue;
+                        break;
+                    case "zipCode":
+                        person.zipCode = newValue;
+                        break;
+                    case "phone":
+                        person.phone = newValue;
+                        break;
+                    case "email":
+                        person.email = email;
+                        break;
+                    default:
+                        console.log("Enter correct param.");
+
+                }
+            }
         });
     }
 }
 
-let addressBook = new AddressBook();
-var person = new Person("Abhi", "Kapoor", "VedViyas", "Meerut", "UP", "250005","9876543210","abhi.kapoor@example.com");
+var addressBook = new AddressBook();
+var person = new Person("Abhi", "Kapoor", "VedViyas", "Meerut", "UP", "250005", "9876543210", "abhi.kapoor@example.com");
 addressBook.addContact(person);
+addressBook.editContact("Abhi", "city", "Mnzff");
 addressBook.showContacts();
