@@ -150,10 +150,23 @@ class AddressBook {
             }
         });
     }
+
+    deleteContact(firstName){
+        addressBook.addressBookArray.forEach(person =>{
+            if(person.firstName === firstName){
+                let index = this.addressBookArray.indexOf(addressBook);
+                addressBook.addressBookArray.splice(index,1);
+            }
+        });
+    }
 }
 
 var addressBook = new AddressBook();
-var person = new Person("Abhi", "Kapoor", "VedViyas", "Meerut", "UP", "250005", "9876543210", "abhi.kapoor@example.com");
-addressBook.addContact(person);
+var person1 = new Person("Abhi", "Kapoor", "VedViyas", "Meerut", "UP", "250005", "9876543210", "abhi.kapoor@example.com");
+var person2 = new Person("Harsh", "Kapoor", "VedViyas", "Meerut","UP","250005","9876546780","harsh.kapoor@example.com");
+addressBook.addContact(person1);
+addressBook.addContact(person2);
+addressBook.showContacts();
 addressBook.editContact("Abhi", "city", "Mnzff");
+addressBook.deleteContact("Harsh");
 addressBook.showContacts();
