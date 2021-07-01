@@ -182,6 +182,15 @@ class AddressBook {
             return prefix.firstName.localeCompare(suffix.firstName);
         });
     }
+
+    countByCityorState(input){
+        return addressBook.addressBookArray.reduce((count, person) =>{
+            if(person.city === input || person.state === input){
+                count +=1;   
+            }
+            return count;
+        },0);
+    }
 }
 
 var addressBook = new AddressBook();
@@ -195,11 +204,12 @@ addressBook.addContact(person2);
 addressBook.addContact(person3);
 addressBook.addContact(person4);
 
-// addressBook.showContacts();
+addressBook.showContacts();
 addressBook.editContact("Abhi", "city", "Mnzff");
 addressBook.deleteContact("Harsh");
-// addressBook.showContacts();
+addressBook.showContacts();
 addressBook.getCount();
 addressBook.searchByCityORState("UP");
 addressBook.sortByName();
 addressBook.showContacts();
+console.log(addressBook.countByCityorState("UP"));
